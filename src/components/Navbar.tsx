@@ -18,7 +18,7 @@ const navItems = [
 
 export default function Navbar() {
     return (
-        <header className="fixed top-0 left-0 w-full z-50 flex h-[60px] items-center justify-between px-4 md:px-6 backdrop-blur-lg bg-opacity-30 bg-white text-black dark:bg-black dark:text-white transition-colors ease-in-out duration-200">
+        <header className="fixed top-0 left-0 w-full z-50 flex h-[60px] items-center justify-between px-4 md:px-6 backdrop-blur-md bg-white/30 dark:bg-black/30 shadow-md transition-colors ease-in-out duration-200">
             <div className="flex items-center gap-4">
                 <Sheet>
                     <SheetTrigger asChild>
@@ -30,7 +30,7 @@ export default function Navbar() {
                             ☰
                         </Button>
                     </SheetTrigger>
-                    <SheetContent side="left" className="bg-white text-black dark:bg-black dark:text-white transition-colors ease-in-out duration-200">
+                    <SheetContent side="left" className="bg-white/80 dark:bg-black/80 backdrop-blur-lg text-black dark:text-white transition-colors ease-in-out duration-200">
                         <div className="grid gap-2 py-2">
                             {navItems.map(({ name, link }, index) => (
                                 <Link
@@ -46,7 +46,7 @@ export default function Navbar() {
                 </Sheet>
 
                 <Link to="/" className="text-2xl font-bold hover:text-gray-600 dark:hover:text-gray-300 lg:px-[200px] px-0 transition-colors ease-in-out duration-200">
-                  Chat App
+                    Chat App
                 </Link>
             </div>
 
@@ -77,10 +77,10 @@ export default function Navbar() {
                             appearance={{
                                 elements: {
                                     userButtonAvatarBox: "w-8 h-8 text-black mx-5 transition-colors ease-in-out duration-200",
-                                    userButtonPopoverCard: "bg-white text-black dark:bg-black transition-colors ease-in-out duration-200",
+                                    userButtonPopoverCard: "bg-white/80 dark:bg-black/80 backdrop-blur-lg text-black dark:text-white transition-colors ease-in-out duration-200",
                                     userButtonPopoverActionButton: "hover:bg-gray-200 transition-colors ease-in-out duration-200",
                                     userButtonPopoverActionButtonText: "text-black dark:text-white transition-colors ease-in-out duration-200",
-                                    userButtonPopoverFooter: "bg-white text-black dark:bg-black dark:text-white transition-colors ease-in-out duration-200",
+                                    userButtonPopoverFooter: "bg-white/80 dark:bg-black/80 dark:text-white transition-colors ease-in-out duration-200",
                                 },
                             }}
                         />
@@ -91,3 +91,4 @@ export default function Navbar() {
         </header>
     );
 }
+
