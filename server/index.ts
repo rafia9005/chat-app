@@ -2,7 +2,8 @@ import "dotenv/config";
 import express, { Request, Response } from "express";
 import cors from "cors";
 import { clerkMiddleware } from "@clerk/express";
-import { auth, errorHandler } from "./middleware";
+import webhookRoutes from "./routes/webhookRoutes";
+import messageRoutes from "./routes/messageRoutes";
 import connectDB from "./config/db";
 
 const app = express();
@@ -12,9 +13,8 @@ app.use(clerkMiddleware());
 
 connectDB();
 
-app.get("/protected", auth, (req, res) => {
-  res.json({ message: "Protected route accessed!" });
-});
+app.use("/api/messages", messageRoutes);
+app.use("/api/webhooks", webhookRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
