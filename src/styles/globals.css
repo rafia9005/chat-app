@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 /* ... */
+@font-face {
+  font-family: "Departure Mono";
+  src: url("/src/styles/fonts/DepartureMono-Regular.otf") format("opentype");
+}
 
 @layer base {
   :root {
@@ -116,4 +120,19 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+:root{
+    font-family: "Departure Mono", monospace;
 }
