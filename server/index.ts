@@ -3,6 +3,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import { clerkMiddleware } from "@clerk/express";
 import webhookRoutes from "./routes/webhookRoutes";
+import userRoutes from "./routes/userRoutes";
 import messageRoutes from "./routes/messageRoutes";
 import connectDB from "./config/db";
 
@@ -15,6 +16,7 @@ connectDB();
 
 app.use("/api/messages", messageRoutes);
 app.use("/api/webhooks", webhookRoutes);
+app.use("/api/users", userRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
