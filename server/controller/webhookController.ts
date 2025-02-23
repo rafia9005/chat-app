@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import prisma from "../config/db";
+import User from "../model/User";
 
 export const clerkWebhook = async (req: Request, res: Response) => {
     try {
@@ -16,12 +16,17 @@ export const clerkWebhook = async (req: Request, res: Response) => {
         const name = `${first_name || ""} ${last_name || ""}`.trim();
         const avatar = image_url;
 
-        const user = await prisma.user.upsert({
-            where: { userId: id },
-            update: { email, name, avatar },
-            create: { userId: id, email, name, avatar },
-        });
+        let user = await User.findOne({ clerkId: id });
 
+        if (!user) {
+            user = new User({ userId: id, email, name, avatar });
+        } else {
+            user.email = email;
+            user.name = name;
+            user.avatar = avatar;
+        }
+
+        await user.save();
         res.status(200).json({ message: "User updated successfully", user });
     } catch (error) {
         console.error("Error processing webhook:", error);
