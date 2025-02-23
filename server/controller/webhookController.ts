@@ -19,7 +19,7 @@ export const clerkWebhook = async (req: Request, res: Response) => {
         let user = await User.findOne({ clerkId: id });
 
         if (!user) {
-            user = new User({ clerkId: id, email, name, avatar });
+            user = new User({ userId: id, email, name, avatar });
         } else {
             user.email = email;
             user.name = name;
