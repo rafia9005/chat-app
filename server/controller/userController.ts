@@ -1,15 +1,16 @@
 import { Request, Response } from "express";
-import User from "../model/User";
+import prisma from "../config/db";
 
 export const findUserByClerkId = async (req: Request, res: Response) => {
     try {
         const { clerkId } = req.params;
-
         if (!clerkId) {
             return res.status(400).json({ message: "Clerk ID is required" });
         }
 
-        const user = await User.findOne({ clerkId });
+        const user = await prisma.user.findUnique({
+            where: { userId: clerkId },
+        });
 
         if (!user) {
             return res.status(404).json({ message: "User not found" });
@@ -21,3 +22,4 @@ export const findUserByClerkId = async (req: Request, res: Response) => {
         res.status(500).json({ message: "Internal Server Error" });
     }
 };
+
